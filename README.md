@@ -8,4 +8,4 @@ npm run dev
 ```
 
 ## Demo
-[Play Now](https://mert574.github.io/svelte-tictactoe)
+[Play Now](https://mert574.github.io/tic-tac-toe)
