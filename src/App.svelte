@@ -72,33 +72,39 @@
         {/each}
     </div>
     {#if lastWinner}
-        <h2>{`Game ended. ${lastWinner} ${lastWinner !== "DRAW" ? "won!" : ""}`}</h2>
+        <h2 class="notify">{`Game ended. ${lastWinner} ${lastWinner !== "DRAW" ? "won!" : ""}`}</h2>
     {:else}
-        <p>Turn: {playerTurn ? "PLAYER" : "OPPONENT"}</p>
+        <p class="notify">Turn: {playerTurn ? "PLAYER" : "OPPONENT"}</p>
     {/if}
 </main>
 
 <style>
     main {
-        max-width: 422px;
+        width: 100%;
+        max-width: 360px;
+        height: 100%;
         margin: 0 auto;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        box-sizing: content-box;
     }
 
     .board {
-        width: 420px;
-        height: 420px;
-        border: 1px solid crimson;
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        height: 100%;
+        max-height: 360px;
+        margin: auto 0;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         box-sizing: content-box;
         user-select: none;
         cursor: pointer;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -moz-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 
     .cell {
-        width: 140px;
-        height: 140px;
         border: 1px solid #ff3e00;
         transition: background-color 200ms ease;
         display: flex;
@@ -107,14 +113,15 @@
         text-transform: uppercase;
         font-weight: 900;
         font-size: 32px;
+        font-family: fantasy;
     }
 
     .cell:hover {
-        background-color: #ebebeb;
+        background-color: #f9dbbb;
     }
 
     .cell.highlighted {
-        background-color: #eb9a8e;
+        background-color: #f9c3b9;
     }
 
     h1 {
@@ -122,16 +129,36 @@
         text-transform: uppercase;
         font-size: 4em;
         font-weight: 100;
+        margin: 0;
+    }
+
+    @media screen and (max-width: 480px){
+        h1 {
+            font-size: 3em;
+        }
     }
 
     h2 {
         color: #ff004e;
         text-transform: uppercase;
-        font-size: 1em;
+        font-size: 1rem;
         font-weight: 700;
         background-color: beige;
         width: 100%;
         padding: 0.5em 1em;
         margin: 0;
+    }
+
+    p {
+        font-size: 1rem;
+        font-family: sans-serif;
+        text-align: center;
+    }
+
+    .notify {
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+        left: 0;
     }
 </style>
